@@ -1,0 +1,89 @@
+package training.iqgateway.doctorservice.models;
+
+import java.util.Map;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document("Doctor")
+public class Doctor {
+	
+	@Id
+	private Long mobileNumber;
+	
+	private String fullName;
+	private String specialization;
+	private Integer age;
+	private Hospital hospital;
+	private Map<String, Map<String, String>> availability;
+	
+	public Doctor() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Doctor(Long mobileNumber, String fullName, String specialization, Integer age, Hospital hospital,
+			Map<String, Map<String, String>> availability) {
+		super();
+		this.mobileNumber = mobileNumber;
+		this.fullName = fullName;
+		this.specialization = specialization;
+		this.age = age;
+		this.hospital = hospital;
+		this.availability = availability;
+	}
+
+	public Long getMobileNumber() {
+		return mobileNumber;
+	}
+
+	public void setMobileNumber(Long mobileNumber) {
+		this.mobileNumber = mobileNumber;
+	}
+
+	public String getFullName() {
+		return fullName;
+	}
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
+
+	public String getSpecialization() {
+		return specialization;
+	}
+
+	public void setSpecialization(String specialization) {
+		this.specialization = specialization;
+	}
+
+	public Integer getAge() {
+		return age;
+	}
+
+	public void setAge(Integer age) {
+		this.age = age;
+	}
+
+	public Hospital getHospital() {
+		return hospital;
+	}
+
+	public void setHospital(Hospital hospital) {
+		this.hospital = hospital;
+	}
+
+	public Map<String, Map<String, String>> getAvailability() {
+		return availability;
+	}
+
+	public void setAvailability(Map<String, Map<String, String>> availability) {
+		this.availability = availability;
+	}
+
+	@Override
+	public String toString() {
+		return "Doctor [mobileNumber=" + mobileNumber + ", fullName=" + fullName + ", specialization=" + specialization
+				+ ", age=" + age + ", hospital=" + hospital + ", availability=" + availability + "]";
+	}
+	
+}

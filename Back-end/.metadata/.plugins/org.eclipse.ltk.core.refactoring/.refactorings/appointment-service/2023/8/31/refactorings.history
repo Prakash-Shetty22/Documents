@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename compilation unit &apos;training.iqgateway.appointmentservice.models.AppointmentEO.java&apos; to &apos;Appointment.java&apos;&#x0D;&#x0A;- Original project: &apos;appointment-service&apos;&#x0D;&#x0A;- Original element: &apos;training.iqgateway.appointmentservice.models.AppointmentEO.java&apos;&#x0D;&#x0A;- Renamed element: &apos;training.iqgateway.appointmentservice.models.Appointment.java&apos;" description="Rename compilation unit &apos;AppointmentEO.java&apos;" flags="2" id="org.eclipse.jdt.ui.rename.compilationunit" input="/src\/main\/java&lt;training.iqgateway.appointmentservice.models{AppointmentEO.java" name="Appointment.java" references="false" stamp="1691066450168" version="1.0"/>
+</session>

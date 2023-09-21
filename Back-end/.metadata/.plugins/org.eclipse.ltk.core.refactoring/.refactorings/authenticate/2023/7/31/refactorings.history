@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;training.iqgateway.authenticate.services.SignUpService&apos; to &apos;AuthenticateService&apos;&#x0D;&#x0A;- Original project: &apos;authenticate&apos;&#x0D;&#x0A;- Original element: &apos;training.iqgateway.authenticate.services.SignUpService&apos;&#x0D;&#x0A;- Renamed element: &apos;training.iqgateway.authenticate.services.AuthenticateService&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;SignUpService&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src\/main\/java&lt;training.iqgateway.authenticate.services{SignUpService.java[SignUpService" matchStrategy="1" name="AuthenticateService" qualified="false" references="true" similarDeclarations="false" stamp="1690803704892" textual="false" version="1.0"/>
+</session>

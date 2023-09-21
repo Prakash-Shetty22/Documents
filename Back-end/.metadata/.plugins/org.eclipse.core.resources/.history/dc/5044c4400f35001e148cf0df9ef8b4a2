@@ -1,0 +1,111 @@
+package training.iqgateway.appointmentservice.services;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
+import training.iqgateway.appointmentservice.models.Appointment;
+import training.iqgateway.appointmentservice.models.Doctor;
+import training.iqgateway.appointmentservice.models.User;
+import training.iqgateway.appointmentservice.repositories.AppointmentRepository;
+import training.iqgateway.appointmentservice.repositories.DoctorRepository;
+import training.iqgateway.appointmentservice.repositories.UserRepository;
+
+@Service
+public class AppointmentService {
+
+	@Autowired
+	private AppointmentRepository appointmentRepository;
+	@Autowired
+	private UserRepository userRepository;
+	@Autowired
+	private DoctorRepository doctorRepository;
+
+	// Get today's date in the desired string format
+	LocalDate now = LocalDate.now();
+	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+	String today = now.format(formatter);
+
+	public ResponseEntity<Map<String, String>> addAppointment(Map<String, String> appointment) {
+		// Process the availability data and save it in your backend
+		// Return a response with a success message
+
+		Long mobileNumber = Long.parseLong(appointment.get("mobileNumber"));
+		Long doctorNumber = Long.parseLong(appointment.get("doctorNumber"));
+		String specialization = appointment.get("specialization");
+		String date = appointment.get("date");
+		String time = appointment.get("time");
+		
+		User patient = userRepository.findByMobileNumber(mobileNumber);
+		Doctor doctor = doctorRepository.findByMobileNumber(doctorNumber);
+
+		Map<String, String> response = new HashMap<>();
+
+		if(appointmentRepository.save(new Appointment(patient, doctor, specialization, "Requested", date, time, false, false, "Not Applicable", false, today, today, true)) != null) {
+			response.put("message", "Appointment Booked Successfully");
+			return ResponseEntity.ok(response);
+		}
+
+		response.put("message", "Sorry, Your Appointment is Not Booked. Please Try Again!");
+		return ResponseEntity.ok(response);
+	}
+	
+	public List<Appointment> getAppointmentStatus(Map<String, String> searchCriteria) {
+		Long mobileNumber = Long.parseLong(searchCriteria.get("mobileNumber"));
+//		LocalDate today = LocalDate.now();
+		LocalDate today = LocalDate.now();
+        String todayString = today.format(DateTimeFormatter.ISO_DATE); // Convert today's date to string
+        
+        LocalDate currentDate = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String formattedCurrentDate = currentDate.format(formatter);
+        
+        return appointmentRepository.findByPatient_MobileNumberAndTreatmentCompletedIsFalseAndDateGreaterThan(mobileNumber, formattedCurrentDate);
+//        return appointmentRepository.findByTreatmentCompletedIsFalseAndDateGreaterThanAndPatient_MobileNumber(mobileNumber, todayString);
+//        return appointmentRepository.findByTreatmentCompletedIsFalseAndPatient_MobileNumber(mobileNumber);
+        
+//        return appointmentRepository.findByTreatmentCompletedIsFalseAndDateGreaterThan(formattedCurrentDate);
+//        return appointmentRepository.findAll();
+	}
+	
+	public List<Appointment> getAppointmentRequests(Map<String, String> searchCriteria) {
+		Long mobileNumber = Long.parseLong(searchCriteria.get("mobileNumber"));
+//		LocalDate today = LocalDate.now();
+//        String todayString = today.format(DateTimeFormatter.ISO_DATE); // Convert today's date to string
+        
+        LocalDate currentDate = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String formattedCurrentDate = currentDate.format(formatter);
+        
+        // Get the current time
+        LocalTime currentTime = LocalTime.now();
+
+        // Create a DateTimeFormatter for the desired format (HH:mm)
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+
+        // Format the current time using the formatter
+        String formattedTime = currentTime.format(timeFormatter);
+        
+        String status="Requested";
+        
+//        return appointmentRepository.findByDoctor_Hospital_Admin_MobileNumberAndRequestStatusAndDateAndTimeGreaterThanEqual(mobileNumber, "Requested", formattedCurrentDate, formattedTime);
+        return appointmentRepository.findByDoctor_Hospital_Admin_MobileNumberAndRequestStatusAndDateGreaterThanEqualOrDateEqualsAndTimeGreaterThanEqual(mobileNumber, status, formattedCurrentDate, formattedTime);
+	}
+	
+	public List<Appointment> getAppointments() {
+		System.out.println("Inside service");
+        List<Appointment> appointments = appointmentRepository.findAll();
+        for(Appointment appointment : appointments) {
+        	System.out.println(appointment);
+        }
+        return appointments;
+	}
+
+}

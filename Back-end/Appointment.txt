@@ -1,0 +1,179 @@
+package training.iqgateway.appointmentservice.models;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document("Appointments")
+public class Appointment {
+	
+	@Id
+	private String id;
+	
+	private Long patientMobileNumber;
+	private Long doctorMobileNumber;
+	private String specialization;
+	private String requestStatus;
+	private String date;
+	private String time;
+	private boolean reschedulingRequest;
+	private String reschedulingStatus;
+	private boolean treatmentCompleted;
+	private String createdDate;
+	private String updatedDate;
+	private boolean show;
+	
+	public Appointment() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Appointment(String id, Long patientMobileNumber, Long doctorMobileNumber, String specialization,
+			String requestStatus, String date, String time, boolean reschedulingRequest, String reschedulingStatus,
+			boolean treatmentCompleted, String createdDate, String updatedDate, boolean show) {
+		super();
+		this.id = id;
+		this.patientMobileNumber = patientMobileNumber;
+		this.doctorMobileNumber = doctorMobileNumber;
+		this.specialization = specialization;
+		this.requestStatus = requestStatus;
+		this.date = date;
+		this.time = time;
+		this.reschedulingRequest = reschedulingRequest;
+		this.reschedulingStatus = reschedulingStatus;
+		this.treatmentCompleted = treatmentCompleted;
+		this.createdDate = createdDate;
+		this.updatedDate = updatedDate;
+		this.show = show;
+	}
+	
+	public Appointment(Long patientMobileNumber, Long doctorMobileNumber, String specialization, String requestStatus,
+			String date, String time, boolean reschedulingRequest, String reschedulingStatus,
+			boolean treatmentCompleted, String createdDate, String updatedDate, boolean show) {
+		super();
+		this.patientMobileNumber = patientMobileNumber;
+		this.doctorMobileNumber = doctorMobileNumber;
+		this.specialization = specialization;
+		this.requestStatus = requestStatus;
+		this.date = date;
+		this.time = time;
+		this.reschedulingRequest = reschedulingRequest;
+		this.reschedulingStatus = reschedulingStatus;
+		this.treatmentCompleted = treatmentCompleted;
+		this.createdDate = createdDate;
+		this.updatedDate = updatedDate;
+		this.show = show;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public Long getPatientMobileNumber() {
+		return patientMobileNumber;
+	}
+
+	public void setPatientMobileNumber(Long patientMobileNumber) {
+		this.patientMobileNumber = patientMobileNumber;
+	}
+
+	public Long getDoctorMobileNumber() {
+		return doctorMobileNumber;
+	}
+
+	public void setDoctorMobileNumber(Long doctorMobileNumber) {
+		this.doctorMobileNumber = doctorMobileNumber;
+	}
+
+	public String getSpecialization() {
+		return specialization;
+	}
+
+	public void setSpecialization(String specialization) {
+		this.specialization = specialization;
+	}
+
+	public String getRequestStatus() {
+		return requestStatus;
+	}
+
+	public void setRequestStatus(String requestStatus) {
+		this.requestStatus = requestStatus;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+	public String getTime() {
+		return time;
+	}
+
+	public void setTime(String time) {
+		this.time = time;
+	}
+
+	public boolean isReschedulingRequest() {
+		return reschedulingRequest;
+	}
+
+	public void setReschedulingRequest(boolean reschedulingRequest) {
+		this.reschedulingRequest = reschedulingRequest;
+	}
+
+	public String getReschedulingStatus() {
+		return reschedulingStatus;
+	}
+
+	public void setReschedulingStatus(String reschedulingStatus) {
+		this.reschedulingStatus = reschedulingStatus;
+	}
+
+	public boolean isTreatmentCompleted() {
+		return treatmentCompleted;
+	}
+
+	public void setTreatmentCompleted(boolean treatmentCompleted) {
+		this.treatmentCompleted = treatmentCompleted;
+	}
+
+	public String getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(String createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public String getUpdatedDate() {
+		return updatedDate;
+	}
+
+	public void setUpdatedDate(String updatedDate) {
+		this.updatedDate = updatedDate;
+	}
+
+	public boolean isShow() {
+		return show;
+	}
+
+	public void setShow(boolean show) {
+		this.show = show;
+	}
+
+	@Override
+	public String toString() {
+		return "Appointment [id=" + id + ", patientMobileNumber=" + patientMobileNumber + ", doctorMobileNumber="
+				+ doctorMobileNumber + ", specialization=" + specialization + ", requestStatus=" + requestStatus
+				+ ", date=" + date + ", time=" + time + ", reschedulingRequest=" + reschedulingRequest
+				+ ", reschedulingStatus=" + reschedulingStatus + ", treatmentCompleted=" + treatmentCompleted
+				+ ", createdDate=" + createdDate + ", updatedDate=" + updatedDate + ", show=" + show + "]";
+	}
+	
+}

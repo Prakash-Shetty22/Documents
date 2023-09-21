@@ -1,0 +1,5 @@
+package training.iqgateway.chatserver.controller;
+
+public class ChatController {
+
+}

@@ -1,0 +1,144 @@
+import React from 'react';
+import { Box, Card, CardContent, Typography, Button, Tab, Tabs, Chip } from '@mui/material';
+import GoBackButton from '../mui/GoBackButton';
+import Grid from '@mui/material/Grid';
+
+const SortedDoctors = (props) => {
+
+    const [selectedCardIndex, setSelectedCardIndex] = React.useState(null);
+    // const [selectedDate, setSelectedDate] = React.useState(null);
+    const [selectedDate, setSelectedDate] = React.useState(Object.keys(props.data[0]?.availability)[0] || null);
+    // const [selectedDate, setSelectedDate] = React.useState(getInitialSelectedDate());
+    const [selectedChip, setSelectedChip] = React.useState(null);
+
+    // function getInitialSelectedDate() {
+    //     const dates = Object.keys(props.data[0]?.availability);
+    //     return dates.sort((a, b) => new Date(a) - new Date(b))[0] || null;
+    // }
+
+    // function getInitialSelectedDate() {
+    //     const firstItem = props.data[0];
+    //     if (firstItem && firstItem.availability) {
+    //         const dates = Object.keys(firstItem.availability);
+    //         return dates.sort((a, b) => new Date(a) - new Date(b))[0] || null;
+    //     }
+    //     return null;
+    // }
+
+    const handleTabChange = (event, newValue) => {
+        setSelectedDate(newValue);
+        setSelectedChip(null); // Reset selected chip when tab changes
+    };
+
+    // function getSortedDates() {
+    //     const dates = Object.keys(props.data[0]?.availability);
+    //     return dates.sort((a, b) => new Date(a) - new Date(b));
+    // }
+
+    // function getSortedDates() {
+    //     const firstItem = props.data[0];
+    //     if (firstItem && firstItem.availability) {
+    //         const dates = Object.keys(firstItem.availability);
+    //         return dates.sort((a, b) => new Date(a) - new Date(b));
+    //     }
+    //     return [];
+    // }
+
+    const chipStyles = {
+        marginRight: '5px',
+        marginBottom: '5px',
+        cursor: 'pointer',
+    };
+
+    const selectedChipStyles = {
+        ...chipStyles,
+        backgroundColor: 'lightblue',
+    };
+
+    return (
+        <div>
+            {/* <Grid container spacing={2} >
+        <Grid item xs={8}> */}
+            <Typography variant="h5" component="h1" sx={{ marginTop: 3, display: 'flex', flexDirection: 'column', alignItems: 'center', boxShadow: 7 }}>
+                Location : {props.selectedLocation}, Specialization : {props.selectedSpecialty}{<GoBackButton setSortedDoctors={props.setSortedDoctors} />}
+            </Typography>
+            {/* </Grid>
+        <Grid item xs={4}>
+          <GoBackButton />
+        </Grid>
+      </Grid> */}
+            {/* <Typography sx={{ marginTop: 3, display: 'flex', flexDirection: 'column', alignItems: 'center', boxShadow: 7 }} variant="h6" component="h1">
+                Location : {props.selectedLocation}, Specialization : {props.selectedSpecialty}{<GoBackButton/>}
+            </Typography> */}
+            {props.data.map((item, index) => (
+                <Card key={index} sx={{ marginBottom: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center', boxShadow: 7 }}>
+                    <CardContent>
+                        <Typography variant="h6">Dr. {item.fullName}</Typography>
+                        <Typography variant="body1" color="textSecondary">
+                            {item.hospital.name}, {item.hospital.location}
+                        </Typography>
+                        <Typography variant="body1" color="textSecondary">
+                            Age: {item.age}
+                        </Typography>
+                        <Typography variant="body1" color="textSecondary">
+                            Gender: {item.gender}
+                        </Typography>
+                        <Typography variant="body1" color="textSecondary">
+                            Specialization: {item.specialization}
+                        </Typography>
+                        <Typography variant="body1" color="textSecondary">
+                            Consultation Fees: {item.fee}
+                        </Typography>
+                        <Button variant="contained" onClick={(e) => { setSelectedCardIndex(index); setSelectedChip(null) }}>
+                            Book Appointment
+                        </Button>
+                        {selectedCardIndex === index && (
+                            <Box>
+                                <Tabs
+                                    value={selectedDate}
+                                    // value={getSortedDates().indexOf(selectedDate)}
+                                    onChange={handleTabChange}
+                                    variant="scrollable"
+                                    scrollButtons="auto"
+                                    aria-label="scrollable auto tabs example"
+                                >
+                                    {Object.entries(item.availability).map(([date]) => (
+                                        <Tab key={date} label={date} value={date} />
+                                    ))}
+                                    {/* {getSortedDates().map((date, index) => (
+                                        <Tab key={index} label={date} />
+                                    ))} */}
+                                </Tabs>
+                                {selectedDate && (
+                                    <React.Fragment>
+                                        <Box>
+                                            {Object.entries(item.availability[selectedDate]).map(([time, status]) =>
+                                                status === 'vacant' && (
+                                                    <Chip
+                                                        key={`${selectedDate}-${time}`}
+                                                        label={time}
+                                                        color="success"
+                                                        variant="outlined"
+                                                        // sx={{ marginRight: '5px', marginBottom: '5px' }}
+                                                        sx={selectedChip === time ? selectedChipStyles : chipStyles}
+                                                        onClick={() => setSelectedChip(time)}
+                                                    />
+                                                )
+                                            )}
+                                        </Box>
+                                        <Button variant="contained" color="primary">
+                                            Book
+                                        </Button>
+                                    </React.Fragment>
+                                )}
+                            </Box>
+                        )}
+
+                    </CardContent>
+                </Card>
+            ))}
+        </div>
+    );
+};
+
+export default SortedDoctors;

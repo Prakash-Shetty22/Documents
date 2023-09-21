@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<typeInfoHistroy>
+<typeInfo handle="=authenticate/src\/main\/java&lt;training.iqgateway.authenticate.repositories{CustomUserRepository.java[CustomUserRepository" modifiers="513" timestamp="1692969808078"/>
+<typeInfo handle="=authenticate/C:\/Program Files\/Java\/jdk1.8.0_361\/jre\/lib\/rt.jar&lt;org.omg.CORBA(CustomMarshal.class[CustomMarshal" modifiers="1537" timestamp="1681456300310"/>
+<typeInfo handle="=authenticate/C:\/Users\/prakash.shetty\/.m2\/repository\/org\/springframework\/data\/spring-data-mongodb\/3.4.14\/spring-data-mongodb-3.4.14.jar&lt;org.springframework.data.mongodb.repository(MongoRepository.class[MongoRepository" modifiers="1537" timestamp="1689941505507"/>
+<typeInfo handle="=messaging-websocket/C:\/Users\/prakash.shetty\/.m2\/repository\/org\/springframework\/spring-websocket\/5.3.29\/spring-websocket-5.3.29.jar&lt;org.springframework.web.socket.config.annotation(WebSocketMessageBrokerConfigurer.class[WebSocketMessageBrokerConfigurer" modifiers="1537" timestamp="1691668322999"/>
+<typeInfo handle="=messaging-websocket/C:\/Users\/prakash.shetty\/.m2\/repository\/org\/springframework\/spring-websocket\/5.3.29\/spring-websocket-5.3.29.jar&lt;org.springframework.web.socket.config.annotation(WebSocketHandlerRegistry.class[WebSocketHandlerRegistry" modifiers="1537" timestamp="1691668322999"/>
+</typeInfoHistroy>
